@@ -1,9 +1,14 @@
 <template>
   <div class="parent">
-    Stats meter
     <div class="test" :style="{ clipPath: path }">
       <div class="test-interior" :style="{ clipPath: path }">HI</div>
     </div>
+    <div class="tag hp">hp</div>
+    <div class="tag atk">Attack</div>
+    <div class="tag def">Defense</div>
+    <div class="tag spe">Speed</div>
+    <div class="tag sp-def">SP. def</div>
+    <div class="tag sp-atk">SP. Atk</div>
     <div class="circle">
       <div class="circle half" />
       <div class="circle third" />
@@ -86,13 +91,14 @@ const sideF = (amount: number) => {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 div.parent {
   position: relative;
   width: 200px;
   height: 200px;
   padding: 0;
   margin: 0;
+  overflow: visible;
 }
 div.test {
   position: absolute;
@@ -113,6 +119,34 @@ div.test-interior {
   margin: 0;
   opacity: 0.9;
   background: grey;
+}
+div.tag {
+  position: absolute;
+  font-weight: bold;
+  &.hp {
+    top: -10px;
+    left: 90px;
+  }
+  &.atk {
+    top: 40px;
+    left: 170px;
+  }
+  &.def {
+    top: 140px;
+    left: 160px;
+  }
+  &.spe {
+    top: 190px;
+    left: 80px;
+  }
+  &.sp-def {
+    top: 140px;
+    left: -10px;
+  }
+  &.sp-atk {
+    top: 40px;
+    left: -10px;
+  }
 }
 div.circle {
   position: absolute;

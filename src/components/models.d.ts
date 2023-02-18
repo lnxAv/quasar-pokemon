@@ -11,11 +11,13 @@ export interface IPokemon {
   name: string;
 }
 
+export type Sprite = { [sprite: string]: string };
+
 export interface IPokemonIcon {
-  sprites: { [sprite: string]: string };
+  sprites: Sprite & { other: { home: Sprite } };
 }
 
-interface IPokeObj {
+export interface IPokeObj {
   id: number;
   height: number;
   weight: number;
