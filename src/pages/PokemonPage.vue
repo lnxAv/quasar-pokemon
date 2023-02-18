@@ -1,7 +1,8 @@
 <template>
   <q-page class="row">
-    <PokemonAbout v-if="pokemonStore.section === 'about'" />
-    <PokemonStats v-else />
+    <h3>{{ id }}</h3>
+    <PokemonAbout v-if="pokemonStore.section === 'about'" :poke-obj="pokeObj" />
+    <PokemonStats v-else :poke-obj="pokeObj" />
   </q-page>
 </template>
 
@@ -15,16 +16,15 @@ import { useRouter } from 'vue-router';
 import { IPokeObj } from 'src/components/models';
 
 const router = useRouter();
-const id = (router.currentRoute.value.params.id as string) || '';
+const id = ref((router.currentRoute.value.params.id as string) || '');
 const pokemonStore = usePokemonStore();
 const pokeObj = ref<IPokeObj | null>(null);
 const { execute } = usePokemonData<{ name: string }, IPokeObj>(
   (obj) => `/pokemon/${obj?.name}`,
   (r) => {
     pokeObj.value = r;
-    console.log(r);
     return r;
   }
 );
-execute({ name: id });
+execute({ name: id.value });
 </script>

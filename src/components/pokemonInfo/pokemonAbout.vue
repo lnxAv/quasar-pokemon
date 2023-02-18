@@ -2,20 +2,23 @@
   <div class="container">
     <div class="desc">Description</div>
     <div class="details">
-      <div>type</div>
-      <div>{{ props.weigth }} lb.</div>
-      <div>{{ props.height }} ft.</div>
+      <div>
+        <div v-for="type in props.pokeObj?.types" :key="type.slot">
+          {{ type.type.name }}
+        </div>
+      </div>
+      <div>{{ props.pokeObj?.height }} ft.</div>
+      <div>{{ props.pokeObj?.weight }} lt.</div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { onMounted } from 'vue';
 import { usePokemonData } from 'src/api/usePokemonData';
-import { IPokemon, IPokeObj } from 'src/components/models';
+import { IPokeObj } from 'src/components/models';
 
-const props = defineProps<Partial<IPokeObj>>();
-const pokemonAboutData = ref<Array<IPokemon>>([]);
+const props = defineProps<{ pokeObj: IPokeObj | null }>();
 
 const result = usePokemonData(
   () => '',

@@ -18,7 +18,11 @@ export interface IPokemonIcon {
 interface IPokeObj {
   id: number;
   height: number;
-  weigth: number;
-  ability: [{ name: string; url: string }];
-  stats: [{ base_stats: number; stats: { name: string; url: string } }];
+  weight: number;
+  ability: Array<{ name: string; url: string }> | null;
+  stats: Array<{
+    base_stat: number;
+    stat: { name: string; url: string };
+  }> | null;
+  types: Array<{ slot: number; type: { name: string; url: string } }> | null;
 }
